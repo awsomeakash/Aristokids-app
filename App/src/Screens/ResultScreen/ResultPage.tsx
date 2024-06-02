@@ -4,9 +4,8 @@ import Svg, { Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../Components/Header';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import globalStyles from '../../Utils/globalStyles';
 
-const ResultPage = ({ route }:any) => {
+const ResultPage = ({ route }) => {
     const navigation = useNavigation();
     const { newCorrectAnswerCount, formData } = route.params;
     const { numberOfQuestions, numberOfDigits, numberOfRows } = formData;
@@ -29,7 +28,7 @@ const ResultPage = ({ route }:any) => {
             const maxPerc = 60 * Math.PI * 2;
             const strokeDashoffset = maxPerc - (maxPerc * v.value) / 100;
             if (circleRef.current) {
-                (circleRef.current as any).setNativeProps({
+                circleRef.current.setNativeProps({
                     strokeDashoffset,
                 });
             }
@@ -41,7 +40,7 @@ const ResultPage = ({ route }:any) => {
     }, [percentage]);
 
     return (
-        <View style={globalStyles.container}>
+        <View style={styles.container}>
             <Header />
             <View style={styles.body}>
                 <Text style={styles.infoText}>{numberOfDigits} digits - {numberOfRows} rows</Text>
@@ -65,7 +64,7 @@ const ResultPage = ({ route }:any) => {
                         <Text style={styles.textStyle}>{numberOfQuestions}</Text>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.homeButton} onPress={() => navigation.navigate('SelectQuestionType')}>
+                <TouchableOpacity style={styles.homeButton} onPress={() => navigation.navigate('Home')}>
                     <Text>Retry</Text>
                 </TouchableOpacity>
             </View>
@@ -76,6 +75,12 @@ const ResultPage = ({ route }:any) => {
 export default ResultPage;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: 'black',
+        paddingTop: 40,
+    },
     textStyle: {
         color: 'white',
         fontSize: 30,

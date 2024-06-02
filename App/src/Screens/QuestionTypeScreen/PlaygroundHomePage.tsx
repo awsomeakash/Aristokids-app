@@ -4,7 +4,7 @@ import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
 
-function HomePage({ navigation }: any) {
+function PlaygroundHomePage({ navigation }: any) {
     const initialValues = [
         { label: 'Addition', checked: false },
         { label: 'Subtraction', checked: false },
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomePage;
+export default PlaygroundHomePage;

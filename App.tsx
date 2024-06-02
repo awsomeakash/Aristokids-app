@@ -9,8 +9,10 @@ import { PaperProvider , MD3LightTheme as DefaultTheme } from 'react-native-pape
 import AnswerPage from './App/src/Screens/QuestionScreen/AnswerPage';
 import ResultPage from './App/src/Screens/ResultScreen/ResultPage';
 import SelectQuestionTypePage from './App/src/Screens/QuestionTypeSelectScreen/SelectQuestionTypePage';
-const Stack = createNativeStackNavigator();
+import AddSubHomePage from './App/src/Screens/QuestionTypeScreen/AddSubHomePage';
 
+
+const Stack = createNativeStackNavigator();
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -33,6 +35,7 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="PlaygroundHome" component={PlaygroundHomePage} options={{ headerShown: false }} />
+        <Stack.Screen name="AddSubHome" component={AddSubHomePage} options={{ headerShown: false }} />
         <Stack.Screen name="Question" component={QuestionPage} options={{ headerShown: false }} />
         <Stack.Screen name="Answer" component={AnswerPage} options={{ headerShown: false }} />
         <Stack.Screen name="SelectQuestionType" component={SelectQuestionTypePage} options={{ headerShown: false }} />

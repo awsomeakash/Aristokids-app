@@ -2,7 +2,7 @@ const questionTypeSelect = ['Multiplication','Addition-Subtraction','Division','
 
 const questionTypeSelectMapper:{[key: string]: string } = {
     'Multiplication': 'Multiplication',
-    'Addition-Subtraction': 'Addition-Subtraction',
+    'Addition-Subtraction': 'AddSubHome',
     'Division': 'Division',
     'Playgorund': 'PlaygroundHome',
 }

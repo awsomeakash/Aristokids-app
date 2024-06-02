@@ -2,9 +2,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import globalStyles from '../../Utils/globalStyles';
 import Header from '../../Components/Header';
-import { questionTypeSelect, questionTypeSelectMapper } from '../../Utils/Constants';
+import { questionTypeSelect, questionTypeSelectMapper } from '../../Utils/constants';
+import  naviagateToSelectedQuestionTypePage from '../../Utils/navigation';
 
-function SelectQuestionTypePage() {
+function SelectQuestionTypePage({navigation}: any) {
   return (
     <View style={globalStyles.container}>
       <Header />
@@ -17,7 +18,12 @@ function SelectQuestionTypePage() {
                 <TouchableOpacity
                   style={styles.touchableStyle}
                   onPress={() => {
-                    console.warn(`You have selected ${questionType}`);
+                   const navigatePage = naviagateToSelectedQuestionTypePage(questionType);
+                   if (navigatePage) {
+                     navigation.navigate(navigatePage);
+                   } else {
+                     console.warn('You have selected ' + questionType);
+                   }
                   }}>
                   <Text style={styles.optionText}>{questionType}</Text>
                 </TouchableOpacity>
@@ -25,7 +31,13 @@ function SelectQuestionTypePage() {
                   <TouchableOpacity
                     style={styles.touchableStyle}
                     onPress={() => {
-                      console.warn(`You have selected ${questionTypeSelect[index + 1]}`);
+                      const navigatePage = naviagateToSelectedQuestionTypePage(questionTypeSelect[index + 1]);
+                      console.log('navigatePage', navigatePage);
+                      if (navigatePage) {
+                        navigation.navigate(navigatePage);
+                      } else {
+                        console.warn('You have selected ' + questionTypeSelect[index + 1]);
+                      }
                     }}>
                     <Text style={styles.optionText}>{questionTypeSelect[index + 1]}</Text>
                   </TouchableOpacity>

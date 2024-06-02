@@ -5,12 +5,11 @@ import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
 import globalStyles from '../../Utils/globalStyles';
 
-function PlaygroundHomePage({ navigation }: any) {
+
+function AddSubHomePage ({ navigation }: any)  {
     const initialValues = [
-        { label: 'Addition', checked: false },
-        { label: 'Subtraction', checked: false },
-        { label: 'Multiplication', checked: false },
-        { label: 'Division', checked: false },
+        { label: 'Addition', checked: true, disabled: true },
+        { label: 'Subtraction', checked: true }
     ];
     const answeredQuestions =  1;
     const correctAnswer = 0;
@@ -57,6 +56,8 @@ function PlaygroundHomePage({ navigation }: any) {
     );
 }
 
+export default AddSubHomePage
+
 const styles = StyleSheet.create({
     dropDownButton: {
         backgroundColor: 'rgb(79, 171, 92)',
@@ -69,6 +70,4 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'white',
     },
-});
-
-export default PlaygroundHomePage;
+})

@@ -3,8 +3,9 @@ import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Key
 import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
+import globalStyles from '../../Utils/globalStyles';
 
-function HomePage({ navigation }: any) {
+function PlaygroundHomePage({ navigation }: any) {
     const initialValues = [
         { label: 'Addition', checked: false },
         { label: 'Subtraction', checked: false },
@@ -41,7 +42,7 @@ function HomePage({ navigation }: any) {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
+            <View style={globalStyles.container}>
                 <Header />
                 <Forms name="Enter number of rows" onInputChange={handleInputChange(setNumberOfRows)} />
                 <Forms name="Enter number of questions" onInputChange={handleInputChange(setNumberOfQuestions)} />
@@ -57,12 +58,6 @@ function HomePage({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: 'black',
-        paddingTop: 40,
-    },
     dropDownButton: {
         backgroundColor: 'rgb(79, 171, 92)',
         paddingVertical: 10,
@@ -76,4 +71,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomePage;
+export default PlaygroundHomePage;

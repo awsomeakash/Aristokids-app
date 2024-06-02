@@ -22,7 +22,7 @@ const theme = {
 
 function App() {
   return (
-    <PaperProvider theme={theme}>
+
     <View style={styles.mainContainer}>
     <NavigationContainer>
       <StatusBar  hidden={true} />
@@ -40,7 +40,6 @@ function App() {
       </Stack.Navigator>
     </NavigationContainer>
     </View>
-    </PaperProvider>
   );
 }
 

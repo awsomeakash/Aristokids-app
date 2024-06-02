@@ -4,8 +4,9 @@ import Svg, { Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../Components/Header';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import globalStyles from '../../Utils/globalStyles';
 
-const ResultPage = ({ route }) => {
+const ResultPage = ({ route }:any) => {
     const navigation = useNavigation();
     const { newCorrectAnswerCount, formData } = route.params;
     const { numberOfQuestions, numberOfDigits, numberOfRows } = formData;
@@ -28,7 +29,7 @@ const ResultPage = ({ route }) => {
             const maxPerc = 60 * Math.PI * 2;
             const strokeDashoffset = maxPerc - (maxPerc * v.value) / 100;
             if (circleRef.current) {
-                circleRef.current.setNativeProps({
+                (circleRef.current as any).setNativeProps({
                     strokeDashoffset,
                 });
             }
@@ -40,7 +41,7 @@ const ResultPage = ({ route }) => {
     }, [percentage]);
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Header />
             <View style={styles.body}>
                 <Text style={styles.infoText}>{numberOfDigits} digits - {numberOfRows} rows</Text>
@@ -64,7 +65,7 @@ const ResultPage = ({ route }) => {
                         <Text style={styles.textStyle}>{numberOfQuestions}</Text>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.homeButton} onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.homeButton} onPress={() => navigation.navigate('SelectQuestionType')}>
                     <Text>Retry</Text>
                 </TouchableOpacity>
             </View>
@@ -75,12 +76,6 @@ const ResultPage = ({ route }) => {
 export default ResultPage;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: 'black',
-        paddingTop: 40,
-    },
     textStyle: {
         color: 'white',
         fontSize: 30,

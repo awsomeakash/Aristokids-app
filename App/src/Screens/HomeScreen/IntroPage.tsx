@@ -13,7 +13,7 @@ function IntroPage({ navigation }:any) {
       useNativeDriver: true,
     }).start(() => {
       setTimeout(() => {
-        navigation.replace('SelectQuestionType');
+        navigation.replace('Home');
       }, 2000); // 2 seconds
     });
 
@@ -26,7 +26,7 @@ function IntroPage({ navigation }:any) {
     <View style={globalStyles.container}>
       <Animated.View
         style={[
-         
+          styles.fadingContainer,
           {
             opacity: fadeAnim, 
           },
@@ -50,5 +50,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'black',
+  },
+  fadingContainer: {
+  
   },
 });

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { makeQuestionPage } from '../../Utils/makeQuesiton';
-import { getTextStyle } from '../../Utils/colors';
+import { makeQuestionPage } from '../../Utils/MakeQuesiton';
+import { getTextStyle } from '../../Utils/Colors';
 import Header from '../../Components/Header';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import globalStyles from '../../Utils/globalStyles';
 
 interface FormData {
   numberOfRows: string;
@@ -79,7 +78,7 @@ const QuestionPage: React.FC = () => {
   };
 
   return (
-    <View style={globalStyles.container}>
+    <View style={styles.container}>
       <Header />
       <View style={styles.body}>
         {renderDisplayQuestion(displayQuestion)}
@@ -91,6 +90,12 @@ const QuestionPage: React.FC = () => {
 export default QuestionPage;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'black',
+    paddingTop: 40,
+  },
   body: {
     flex: 1,
     backgroundColor: 'black',

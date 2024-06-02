@@ -4,12 +4,12 @@ const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'black',
-    paddingTop: 15,
   },
   textStyle:{
     color: 'white',
-    fontSize: 50,
+    fontSize: 20,
     fontWeight: 'bold',
   }
 });

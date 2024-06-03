@@ -1,5 +1,15 @@
 
 export function makeQuestionPage(formData:any) {
+    // console.log("Make Question formData",formData)
+    if(formData.QuestionCategory === 'pla') {
+       return PlaygorundLogic(formData)
+    }
+    if(formData.QuestionCategory ==='mul') {
+       return MultiplicationLogic(formData)
+    }
+}
+
+function PlaygorundLogic(formData:any) {
     const nums = [`+ ${Math.floor(Math.random() * (10 ** parseInt(formData.numberOfDigits))).toString()}`];
     const operations = convertOperatorSymbol(formData.operations);
     let total = parseInt(nums[0].split(' ')[1]);
@@ -40,6 +50,18 @@ export function makeQuestionPage(formData:any) {
     }];
 
     console.log(questionArr);
+    return questionArr;
+}
+
+function MultiplicationLogic(formData:any) {
+    const multiplicand = Math.floor(Math.random() * (10 ** parseInt(formData.numberOfdigitMultiplicand)))
+    const multiplier = Math.floor(Math.random() * (10 ** parseInt(formData.numberOfdigitMultiplier)))
+    const answer = multiplicand * multiplier;
+    const questionArr = [{
+        Question: `${multiplicand} X ${multiplier}`,
+        Answer: answer
+    }];
+    console.log("Question Array is ",questionArr);
     return questionArr;
 }
 

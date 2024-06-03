@@ -8,7 +8,7 @@ const AnswerPage = ({ route }: any) => {
     const navigation = useNavigation();
     const [answeredQuestions, setAnsweredQuestions] = useState(initialAnsweredQuestions);
     const [correctAnswerCounts, setCorrectAnswerCounts] = useState(initialCorrectAnswerCount);
-    console.log(formData);
+    console.log("Answer formF::;:::",formData);
     console.log(route.params);
     const incorrectAnswers = [answer - 1, answer + 1, answer + 2, answer - 2];
     const shuffleArray = (array: any[]) => {
@@ -28,13 +28,14 @@ const AnswerPage = ({ route }: any) => {
             newCorrectAnswerCount += 1;
             setCorrectAnswerCounts(newCorrectAnswerCount);
 
-            console.log("Correct Answer Count", newCorrectAnswerCount);
+            // console.log("Correct Answer Count", newCorrectAnswerCount);
         }
         setAnsweredQuestions((prevAnsweredQuestions: number) => prevAnsweredQuestions + 1);
 
         if (answeredQuestions === parseInt(formData.numberOfQuestions)) {
             navigation.replace('Result', {newCorrectAnswerCount,formData});
         } else {
+            console.log("FormData SENT FROM HERE ::::::::::::::::::::::::::::::",formData);
             navigation.replace('Question', { formData, answeredQuestions: answeredQuestions + 1, correctAnswer: newCorrectAnswerCount  });
         }
     };

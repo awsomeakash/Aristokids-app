@@ -5,50 +5,42 @@ import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
 import globalStyles from '../../Utils/globalStyles';
 
-
-function AddSubHomePage ({ navigation }: any)  {
+function MultiplicationHomePage ({ navigation }: any)  {
     const initialValues = [
         { label: 'Addition', checked: true, disabled: true },
         { label: 'Subtraction', checked: true }
     ];
     const answeredQuestions =  1;
     const correctAnswer = 0;
-    const [numberOfRows, setNumberOfRows] = useState('');
+    const [numberOfdigitMultiplier, setNumberOfdigitMultiplier] = useState('');
     const [numberOfQuestions, setNumberOfQuestions] = useState('');
-    const [numberOfDigits, setNumberOfDigits] = useState('');
+    const [numberOfdigitMultiplicand, setNumberOfdigitMultiplicand] = useState('');
     const [timeBetweenNumbers, setTimeBetweenNumbers] = useState('');
-    const [checkboxOptions, setCheckboxOptions] = useState(initialValues);
+
 
     const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (text: string) => {
         setter(text);
     };
 
-    const handleOptionsChange = (options: { label: string; checked: boolean; }[]) => {
-        setCheckboxOptions(options);
-    };
-
     const handleStart = () => {
-        const formData = {
-            numberOfRows,
+        const mulFormData = {
+            numberOfdigitMultiplier,
             numberOfQuestions,
-            numberOfDigits,
+            numberOfdigitMultiplicand,
             timeBetweenNumbers,
-            operations: checkboxOptions.filter(option => option.checked).map(option => option.label),
-            QuestionCategory: 'pla',
-            
+            QuestionCategory: 'mul',
         };
-        navigation.replace('Question', { formData, answeredQuestions, correctAnswer });
+        navigation.replace('Question', { mulFormData, answeredQuestions, correctAnswer });
     };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={globalStyles.container}>
                 <Header />
-                <Forms name="Enter number of rows" onInputChange={handleInputChange(setNumberOfRows)} />
+                <Forms name="Enter number digits for Multiplier" onInputChange={handleInputChange(setNumberOfdigitMultiplier)} />
+                <Forms name="Enter number of digits for Multiplicand" onInputChange={handleInputChange(setNumberOfdigitMultiplicand)} />
                 <Forms name="Enter number of questions" onInputChange={handleInputChange(setNumberOfQuestions)} />
-                <Forms name="Enter number of digits" onInputChange={handleInputChange(setNumberOfDigits)} />
                 <Forms name="Time between two numbers in seconds" onInputChange={handleInputChange(setTimeBetweenNumbers)} />
-                <DropDown initialValues={initialValues} onOptionsChange={handleOptionsChange} />
                 <TouchableOpacity style={styles.dropDownButton} onPress={handleStart}>
                     <Text style={styles.dropDownButtonText}>Start</Text>
                 </TouchableOpacity>
@@ -57,7 +49,7 @@ function AddSubHomePage ({ navigation }: any)  {
     );
 }
 
-export default AddSubHomePage
+export default MultiplicationHomePage
 
 const styles = StyleSheet.create({
     dropDownButton: {

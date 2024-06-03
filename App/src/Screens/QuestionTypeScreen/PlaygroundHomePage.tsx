@@ -35,6 +35,7 @@ function PlaygroundHomePage({ navigation }: any) {
             numberOfDigits,
             timeBetweenNumbers,
             operations: checkboxOptions.filter(option => option.checked).map(option => option.label),
+            QuestionCategory: 'pla',
             
         };
         navigation.replace('Question', { formData, answeredQuestions, correctAnswer });

@@ -25,6 +25,7 @@ const Forms: React.FC<Props> = ({ name, onInputChange }) => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder={name}
+          placeholderTextColor='white'
           value={inputValue}
           onChangeText={handleInputChange}
         />

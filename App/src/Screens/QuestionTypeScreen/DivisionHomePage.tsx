@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
-import DropDown from '../../Components/DropDown';
 import globalStyles from '../../Utils/globalStyles';
 
 function DivisionHomePage ({ navigation }: any)  {

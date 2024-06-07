@@ -11,6 +11,7 @@ import ResultPage from './App/src/Screens/ResultScreen/ResultPage';
 import SelectQuestionTypePage from './App/src/Screens/QuestionTypeSelectScreen/SelectQuestionTypePage';
 import AddSubHomePage from './App/src/Screens/QuestionTypeScreen/AddSubHomePage';
 import MultiplicationHomePage from './App/src/Screens/QuestionTypeScreen/MultiplicationHomePage';
+import DivisionHomePage from './App/src/Screens/QuestionTypeScreen/DivisionHomePage';
 const Stack = createNativeStackNavigator();
 
 const theme = {
@@ -35,6 +36,7 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="PlaygroundHome" component={PlaygroundHomePage} options={{ headerShown: false }} />
+        <Stack.Screen name="DivisionHome" component={DivisionHomePage} options={{ headerShown: false }} />
         <Stack.Screen name="MultiplicationHome" component={MultiplicationHomePage} options={{ headerShown: false }} />
         <Stack.Screen name="AddSubHome" component={AddSubHomePage} options={{ headerShown: false }} />
         <Stack.Screen name="Question" component={QuestionPage} options={{ headerShown: false }} />

@@ -24,20 +24,29 @@ interface MulFormData {
   QuestionCategory: string;
 }
 
+interface DivFormData {
+  numberOfdigitDividend: string,
+  numberOfQuestions: string,
+  numberOfdigitDivisor: string,
+  timeBetweenNumbers: string,
+  QuestionCategory: string,
+}
+
 interface RouteParams {
   formData?: FormData;
   mulFormData?: MulFormData;
+  divFormData?: DivFormData;
   answeredQuestions: number;
   correctAnswer: number;
 }
 
 const QuestionPage: React.FC = () => {
   const route = useRoute();
-  const {formData, answeredQuestions, correctAnswer, mulFormData} =
+  const {formData, answeredQuestions, correctAnswer, mulFormData, divFormData} =
     route.params as RouteParams;
   const [displayQuestion, setDisplayQuestion] = useState<string | null>(null);
   const [answeredQuestion, setAnsweredQuestions] = useState(answeredQuestions);
-  const [QuestionCategory, setQuestionCategory] = useState<string | null >(formData?.QuestionCategory || mulFormData?.QuestionCategory || null);
+  const [QuestionCategory, setQuestionCategory] = useState<string | null >(formData?.QuestionCategory || mulFormData?.QuestionCategory || divFormData?.QuestionCategory ||null);
   const [correctAnswerCount, setCorrectAnswerCount] = useState(correctAnswer);
   const [timeouts, setTimeouts] = useState<any[]>([]);
   const navigation = useNavigation();
@@ -48,6 +57,9 @@ const QuestionPage: React.FC = () => {
     } else if (mulFormData) {
       console.log("MUL DATA :::::::::::::::::::::::::::::::::::::::::::",QuestionCategory);
       setQuestionCategory(mulFormData.QuestionCategory);
+    } else if (divFormData) {
+      console.log("DIV DATA :::::::::::::::::::::::::::::::::::::::::::",QuestionCategory);
+      setQuestionCategory(divFormData.QuestionCategory);
     }
   }, [formData, mulFormData]);
   // console.log(QuestionCategory);
@@ -56,6 +68,7 @@ const QuestionPage: React.FC = () => {
       const newTimeouts: any[] = [];
       console.log("Atleast reached here");
       if (QuestionCategory=== 'pla') {
+        if(!formData) return
         const nums = makeQuestionPage(formData);
         console.log("Entered HERE::::::::::::::::::::::::::::::::::::::::")
         for (let i = 0; i < parseInt(formData.numberOfQuestions); i++) {
@@ -98,6 +111,25 @@ const QuestionPage: React.FC = () => {
           }, parseInt(activeMulFormData.timeBetweenNumbers) * 1000);
           newTimeouts.push(timeoutId);
         }
+      } else if (QuestionCategory=== 'div') {
+        const activeDivFormData = divFormData || formData;
+        if (!activeDivFormData) return;
+        console.log("Entered HERE::::::::::::::::::::::::::::::::::::::::DIVDATA")
+        const nums = makeQuestionPage(activeDivFormData);
+
+        if (nums && nums.length > 0 && nums[0].Question) {
+          setDisplayQuestion(nums[0].Question);
+          const timeoutId = setTimeout(() => {
+            setAnsweredQuestions(answeredQuestion + 1);
+            navigation.navigate('Answer', {
+              answer: nums[0].Answer,
+              formData: activeDivFormData,
+              answeredQuestions: answeredQuestion,
+              correctAnswer: correctAnswerCount,
+            });
+          }, parseInt(activeDivFormData.timeBetweenNumbers) * 1000);
+          newTimeouts.push(timeoutId);
+        }
       }
 
       setTimeouts(newTimeouts);
@@ -122,7 +154,7 @@ const QuestionPage: React.FC = () => {
         </Text>
       );
     }
-    else if (QuestionCategory=== 'mul') {
+    else if (QuestionCategory=== 'mul'||'div') {
       console.log("MulaForm ::::::::::",displayQuestion)
       return (
         <Text style={styles.numberStyles}>
@@ -152,5 +184,6 @@ const styles = StyleSheet.create({
   numberStyles: {
     fontSize: 100,
     fontWeight: 'bold',
+    color: 'white',
   },
 });

@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import React, {useState} from 'react';
+import {
+    View,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from 'react-native';
 import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
 import globalStyles from '../../Utils/GlobalStyles';
+import validateFormData from '../../Utils/ValidateForm';
 
-function PlaygroundHomePage({ navigation }: any) {
+function PlaygroundHomePage({navigation}: any) {
     const initialValues = [
-        { label: 'Addition', checked: false },
-        { label: 'Subtraction', checked: false },
-        { label: 'Multiplication', checked: false },
-        { label: 'Division', checked: false },
+        {label: 'Addition', checked: false},
+        {label: 'Subtraction', checked: false},
+        {label: 'Multiplication', checked: false},
+        {label: 'Division', checked: false},
     ];
-    const answeredQuestions =  1;
+    const answeredQuestions = 1;
     const correctAnswer = 0;
     const [numberOfRows, setNumberOfRows] = useState('');
     const [numberOfQuestions, setNumberOfQuestions] = useState('');
@@ -20,11 +28,15 @@ function PlaygroundHomePage({ navigation }: any) {
     const [timeBetweenNumbers, setTimeBetweenNumbers] = useState('');
     const [checkboxOptions, setCheckboxOptions] = useState(initialValues);
 
-    const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (text: string) => {
-        setter(text);
-    };
+    const handleInputChange =
+        (setter: React.Dispatch<React.SetStateAction<string>>) =>
+        (text: string) => {
+            setter(text);
+        };
 
-    const handleOptionsChange = (options: { label: string; checked: boolean; }[]) => {
+    const handleOptionsChange = (
+        options: {label: string; checked: boolean}[],
+    ) => {
         setCheckboxOptions(options);
     };
 
@@ -34,23 +46,48 @@ function PlaygroundHomePage({ navigation }: any) {
             numberOfQuestions,
             numberOfDigits,
             timeBetweenNumbers,
-            operations: checkboxOptions.filter(option => option.checked).map(option => option.label),
+            operations: checkboxOptions
+                .filter(option => option.checked)
+                .map(option => option.label),
             QuestionCategory: 'pla',
-            
         };
-        navigation.replace('Question', { formData, answeredQuestions, correctAnswer });
+        const validatedFormResult = validateFormData(formData);
+        if (validatedFormResult) {
+            navigation.replace('Question', {
+                formData,
+                answeredQuestions,
+                correctAnswer,
+            });
+        }
     };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={globalStyles.container}>
                 <Header />
-                <Forms name="Enter number of rows" onInputChange={handleInputChange(setNumberOfRows)} />
-                <Forms name="Enter number of questions" onInputChange={handleInputChange(setNumberOfQuestions)} />
-                <Forms name="Enter number of digits" onInputChange={handleInputChange(setNumberOfDigits)} />
-                <Forms name="Time in sec between 2 questions" onInputChange={handleInputChange(setTimeBetweenNumbers)} />
-                <DropDown initialValues={initialValues} onOptionsChange={handleOptionsChange} />
-                <TouchableOpacity style={styles.dropDownButton} onPress={handleStart}>
+                <Forms
+                    name="Enter number of rows"
+                    onInputChange={handleInputChange(setNumberOfRows)}
+                />
+                <Forms
+                    name="Enter number of questions"
+                    onInputChange={handleInputChange(setNumberOfQuestions)}
+                />
+                <Forms
+                    name="Enter number of digits"
+                    onInputChange={handleInputChange(setNumberOfDigits)}
+                />
+                <Forms
+                    name="Time in sec between 2 questions"
+                    onInputChange={handleInputChange(setTimeBetweenNumbers)}
+                />
+                <DropDown
+                    initialValues={initialValues}
+                    onOptionsChange={handleOptionsChange}
+                />
+                <TouchableOpacity
+                    style={styles.dropDownButton}
+                    onPress={handleStart}>
                     <Text style={styles.dropDownButtonText}>Start</Text>
                 </TouchableOpacity>
             </View>

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
-import globalStyles from '../../Utils/globalStyles';
+import DropDown from '../../Components/DropDown';
+import globalStyles from '../../Utils/GlobalStyles';
+
 
 function DivisionHomePage ({ navigation }: any)  {
     const answeredQuestions =  1;

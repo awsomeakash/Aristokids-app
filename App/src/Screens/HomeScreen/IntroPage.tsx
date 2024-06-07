@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Animated } from 'react-native';
 import React, { useRef, useEffect } from 'react';
-import globalStyles from '../../Utils/globalStyles';
+import globalStyles from '../../Utils/GlobalStyles';
 
 
 function IntroPage({ navigation }:any) {

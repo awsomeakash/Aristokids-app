@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {makeQuestionPage} from '../../Utils/makeQuesiton';
-import {getTextStyle} from '../../Utils/colors';
+import {getTextStyle} from '../../Utils/Colors';
 import Header from '../../Components/Header';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import globalStyles from '../../Utils/globalStyles';
+import globalStyles from '../../Utils/GlobalStyles';
 
 interface FormData {
   numberOfRows: string;

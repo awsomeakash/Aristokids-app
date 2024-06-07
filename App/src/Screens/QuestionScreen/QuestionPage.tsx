@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {makeQuestionPage} from '../../Utils/makeQuesiton';
+import {makeQuestionPage} from '../../Utils/MakeQuesiton';
 import {getTextStyle} from '../../Utils/Colors';
 import Header from '../../Components/Header';
 import {useNavigation, useRoute} from '@react-navigation/native';

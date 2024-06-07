@@ -1,7 +1,7 @@
-import { questionTypeSelectMapper } from "./constants";
+import {questionTypeSelectMapper} from './Constants';
 
 function naviagateToSelectedQuestionTypePage(questionCategory: string): string {
-  return questionTypeSelectMapper[questionCategory];
+    return questionTypeSelectMapper[questionCategory];
 }
 
 export default naviagateToSelectedQuestionTypePage;

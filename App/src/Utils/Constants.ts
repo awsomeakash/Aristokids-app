@@ -1,10 +1,15 @@
-const questionTypeSelect = ['Multiplication','Addition-Subtraction','Division','Playgorund'] 
+const questionTypeSelect = [
+    'Multiplication',
+    'Addition-Subtraction',
+    'Division',
+    'Playgorund',
+];
 
-const questionTypeSelectMapper:{[key: string]: string } = {
-    'Multiplication': 'MultiplicationHome',
+const questionTypeSelectMapper: {[key: string]: string} = {
+    Multiplication: 'MultiplicationHome',
     'Addition-Subtraction': 'AddSubHome',
-    'Division': 'DivisionHome',
-    'Playgorund': 'PlaygroundHome',
-}
+    Division: 'DivisionHome',
+    Playgorund: 'PlaygroundHome',
+};
 
-export { questionTypeSelect, questionTypeSelectMapper }
+export {questionTypeSelect, questionTypeSelectMapper};

@@ -66,7 +66,7 @@ const ResultPage = ({ route }:any) => {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.homeButton} onPress={() => navigation.navigate('SelectQuestionType')}>
-                    <Text>Retry</Text>
+                    <Text style={{color:"white"}}>Retry</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
+
     separator: {
         color: 'white',
         fontSize: 30,

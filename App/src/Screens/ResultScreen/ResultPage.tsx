@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, Animated, Easing, TouchableOpacity } from 'reac
 import Svg, { Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../Components/Header';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import globalStyles from '../../Utils/globalStyles';
+import globalStyles from '../../Utils/GlobalStyles';
 
 const ResultPage = ({ route }:any) => {
     const navigation = useNavigation();

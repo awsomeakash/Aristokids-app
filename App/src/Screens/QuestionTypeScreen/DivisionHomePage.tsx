@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Key
 import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
-import globalStyles from '../../Utils/globalStyles';
+import globalStyles from '../../Utils/GlobalStyles';
 
 function DivisionHomePage ({ navigation }: any)  {
     const answeredQuestions =  1;

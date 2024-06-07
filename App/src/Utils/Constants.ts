@@ -3,7 +3,7 @@ const questionTypeSelect = ['Multiplication','Addition-Subtraction','Division','
 const questionTypeSelectMapper:{[key: string]: string } = {
     'Multiplication': 'MultiplicationHome',
     'Addition-Subtraction': 'AddSubHome',
-    'Division': 'Division',
+    'Division': 'DivisionHome',
     'Playgorund': 'PlaygroundHome',
 }
 

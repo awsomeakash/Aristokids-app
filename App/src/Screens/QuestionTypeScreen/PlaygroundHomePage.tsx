@@ -48,7 +48,7 @@ function PlaygroundHomePage({ navigation }: any) {
                 <Forms name="Enter number of rows" onInputChange={handleInputChange(setNumberOfRows)} />
                 <Forms name="Enter number of questions" onInputChange={handleInputChange(setNumberOfQuestions)} />
                 <Forms name="Enter number of digits" onInputChange={handleInputChange(setNumberOfDigits)} />
-                <Forms name="Time between two numbers in seconds" onInputChange={handleInputChange(setTimeBetweenNumbers)} />
+                <Forms name="Time in sec between 2 questions" onInputChange={handleInputChange(setTimeBetweenNumbers)} />
                 <DropDown initialValues={initialValues} onOptionsChange={handleOptionsChange} />
                 <TouchableOpacity style={styles.dropDownButton} onPress={handleStart}>
                     <Text style={styles.dropDownButtonText}>Start</Text>

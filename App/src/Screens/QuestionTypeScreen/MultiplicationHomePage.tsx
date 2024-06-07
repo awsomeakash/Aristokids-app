@@ -40,7 +40,7 @@ function MultiplicationHomePage ({ navigation }: any)  {
                 <Forms name="Enter number digits for Multiplier" onInputChange={handleInputChange(setNumberOfdigitMultiplier)} />
                 <Forms name="Enter number of digits for Multiplicand" onInputChange={handleInputChange(setNumberOfdigitMultiplicand)} />
                 <Forms name="Enter number of questions" onInputChange={handleInputChange(setNumberOfQuestions)} />
-                <Forms name="Time between two numbers in seconds" onInputChange={handleInputChange(setTimeBetweenNumbers)} />
+                <Forms name="Time in sec between 2 questions" onInputChange={handleInputChange(setTimeBetweenNumbers)} />
                 <TouchableOpacity style={styles.dropDownButton} onPress={handleStart}>
                     <Text style={styles.dropDownButtonText}>Start</Text>
                 </TouchableOpacity>

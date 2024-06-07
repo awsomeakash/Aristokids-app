@@ -5,6 +5,7 @@ import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
 import globalStyles from '../../Utils/GlobalStyles';
 
+
 function DivisionHomePage ({ navigation }: any)  {
     const answeredQuestions =  1;
     const correctAnswer = 0;

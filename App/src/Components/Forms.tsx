@@ -1,14 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 
 interface Props {
     name: string;
     onInputChange: (text: string) => void;
+    value?: string;
 }
 
-const Forms: React.FC<Props> = ({name, onInputChange}) => {
+const Forms: React.FC<Props> = ({name, onInputChange, value = ''}) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(value);
+
+    useEffect(() => {
+        setInputValue(value);
+    }, [value]);
 
     const handleInputChange = (text: string) => {
         setInputValue(text);

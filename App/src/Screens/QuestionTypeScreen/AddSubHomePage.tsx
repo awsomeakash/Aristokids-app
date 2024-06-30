@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     View,
     StyleSheet,
@@ -10,21 +10,36 @@ import {
 import Header from '../../Components/Header';
 import Forms from '../../Components/Forms';
 import DropDown from '../../Components/DropDown';
-import globalStyles from '../../Utils/GlobalStyles';
+import globalStyles from '../../Utils/globalStyles';
 import validateFormData from '../../Utils/ValidateForm';
+import CheckBox from '../../Components/CheckBox';
+import {setLocalStorage} from '../../Utils/SetLocalStorage';
 
-function AddSubHomePage({navigation}: any) {
+export const STORAGE_KEY = 'addSubFormData';
+
+function AddSubHomePage({navigation, route}: any) {
     const initialValues = [
         {label: 'Addition', checked: true, disabled: true},
         {label: 'Subtraction', checked: true},
     ];
     const answeredQuestions = 1;
     const correctAnswer = 0;
-    const [numberOfRows, setNumberOfRows] = useState('');
-    const [numberOfQuestions, setNumberOfQuestions] = useState('');
-    const [numberOfDigits, setNumberOfDigits] = useState('');
-    const [timeBetweenNumbers, setTimeBetweenNumbers] = useState('');
+
+    const savedFormData = route.params?.savedFormData || {};
+    const [numberOfRows, setNumberOfRows] = useState(
+        savedFormData.numberOfRows || '',
+    );
+    const [numberOfQuestions, setNumberOfQuestions] = useState(
+        savedFormData.numberOfQuestions || '',
+    );
+    const [numberOfDigits, setNumberOfDigits] = useState(
+        savedFormData.numberOfDigits || '',
+    );
+    const [timeBetweenNumbers, setTimeBetweenNumbers] = useState(
+        savedFormData.timeBetweenNumbers || '',
+    );
     const [checkboxOptions, setCheckboxOptions] = useState(initialValues);
+    const [saveInput, setSaveInput] = useState(false);
 
     const handleInputChange =
         (setter: React.Dispatch<React.SetStateAction<string>>) =>
@@ -38,7 +53,11 @@ function AddSubHomePage({navigation}: any) {
         setCheckboxOptions(options);
     };
 
-    const handleStart = () => {
+    const handleSaveInputChange = () => {
+        setSaveInput(!saveInput);
+    };
+
+    const handleStart = async () => {
         const formData = {
             numberOfRows,
             numberOfQuestions,
@@ -51,6 +70,9 @@ function AddSubHomePage({navigation}: any) {
         };
         const validatedFormResult = validateFormData(formData);
         if (validatedFormResult) {
+            if (saveInput) {
+                setLocalStorage(formData, STORAGE_KEY);
+            }
             navigation.replace('Question', {
                 formData,
                 answeredQuestions,
@@ -66,18 +88,22 @@ function AddSubHomePage({navigation}: any) {
                 <Forms
                     name="Enter number of rows"
                     onInputChange={handleInputChange(setNumberOfRows)}
+                    value={numberOfRows}
                 />
                 <Forms
                     name="Enter number of questions"
                     onInputChange={handleInputChange(setNumberOfQuestions)}
+                    value={numberOfQuestions}
                 />
                 <Forms
                     name="Enter number of digits"
                     onInputChange={handleInputChange(setNumberOfDigits)}
+                    value={numberOfDigits}
                 />
                 <Forms
                     name="Time in sec between 2 questions"
                     onInputChange={handleInputChange(setTimeBetweenNumbers)}
+                    value={timeBetweenNumbers}
                 />
                 <DropDown
                     initialValues={initialValues}
@@ -88,6 +114,13 @@ function AddSubHomePage({navigation}: any) {
                     onPress={handleStart}>
                     <Text style={styles.dropDownButtonText}>Start</Text>
                 </TouchableOpacity>
+                <View style={globalStyles.checkboxContainer}>
+                    <CheckBox
+                        checked={saveInput}
+                        onChange={handleSaveInputChange}
+                    />
+                    <Text style={globalStyles.checkboxLabel}>Save Input</Text>
+                </View>
             </View>
         </TouchableWithoutFeedback>
     );

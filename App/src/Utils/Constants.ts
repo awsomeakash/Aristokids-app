@@ -5,11 +5,18 @@ const questionTypeSelect = [
     'Playgorund',
 ];
 
-const questionTypeSelectMapper: {[key: string]: string} = {
+const questionTypeSelectMapper: { [key: string]: string } = {
     Multiplication: 'MultiplicationHome',
     'Addition-Subtraction': 'AddSubHome',
     Division: 'DivisionHome',
     Playgorund: 'PlaygroundHome',
 };
 
-export {questionTypeSelect, questionTypeSelectMapper};
+const storageKeyType: { [key: string]: string } = {
+    Multiplication: 'mulFormData',
+    'Addition-Subtraction': 'addSubFormData',
+    Division: 'divFormData',
+    Playgorund: 'formData',
+};
+
+export { questionTypeSelect, questionTypeSelectMapper, storageKeyType };

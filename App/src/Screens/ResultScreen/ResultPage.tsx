@@ -1,17 +1,24 @@
-import React, { useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Animated, Easing, TouchableOpacity } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Animated,
+    Easing,
+    TouchableOpacity,
+    Alert,
+} from 'react-native';
+import Svg, {Circle} from 'react-native-svg';
+import {useNavigation} from '@react-navigation/native';
 import Header from '../../Components/Header';
-import globalStyles from '../../Utils/GlobalStyles';
+import globalStyles from '../../Utils/globalStyles';
 
-const ResultPage = ({ route }:any) => {
+const ResultPage = ({route}: any) => {
     const navigation = useNavigation();
-    const { newCorrectAnswerCount, formData } = route.params;
-    const { numberOfQuestions, numberOfDigits, numberOfRows } = formData;
+    const {newCorrectAnswerCount, formData} = route.params;
+    const {numberOfQuestions, numberOfDigits, numberOfRows} = formData;
 
     const percentage = (newCorrectAnswerCount / numberOfQuestions) * 100;
-
     const animatedValue = useRef(new Animated.Value(0)).current;
     const circleRef = useRef();
     const circumference = 60 * Math.PI * 2;
@@ -24,7 +31,7 @@ const ResultPage = ({ route }:any) => {
             useNativeDriver: false,
         }).start();
 
-        animatedValue.addListener((v) => {
+        animatedValue.addListener(v => {
             const maxPerc = 60 * Math.PI * 2;
             const strokeDashoffset = maxPerc - (maxPerc * v.value) / 100;
             if (circleRef.current) {
@@ -33,7 +40,9 @@ const ResultPage = ({ route }:any) => {
                 });
             }
         });
-
+        console.log(
+            '-----------------------------------------------------------------------------------------------------',
+        );
         return () => {
             animatedValue.removeAllListeners();
         };
@@ -43,7 +52,9 @@ const ResultPage = ({ route }:any) => {
         <View style={globalStyles.container}>
             <Header />
             <View style={styles.body}>
-                <Text style={styles.infoText}>{numberOfDigits} digits - {numberOfRows} rows</Text>
+                <Text style={styles.infoText}>
+                    {numberOfDigits} digits - {numberOfRows} rows
+                </Text>
                 <View style={styles.progressContainer}>
                     <Svg width="180" height="180" viewBox="0 0 140 140">
                         <Circle
@@ -59,13 +70,19 @@ const ResultPage = ({ route }:any) => {
                         />
                     </Svg>
                     <View style={styles.textContainer}>
-                        <Text style={styles.textStyle}>{newCorrectAnswerCount}</Text>
+                        <Text style={styles.textStyle}>
+                            {newCorrectAnswerCount}
+                        </Text>
                         <Text style={styles.separator}>-</Text>
-                        <Text style={styles.textStyle}>{numberOfQuestions}</Text>
+                        <Text style={styles.textStyle}>
+                            {numberOfQuestions}
+                        </Text>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.homeButton} onPress={() => navigation.navigate('SelectQuestionType')}>
-                    <Text style={{color:"white"}}>Retry</Text>
+                <TouchableOpacity
+                    style={styles.homeButton}
+                    onPress={() => navigation.navigate('SelectQuestionType')}>
+                    <Text style={{color: 'white'}}>Retry</Text>
                 </TouchableOpacity>
             </View>
         </View>

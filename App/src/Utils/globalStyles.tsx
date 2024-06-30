@@ -12,6 +12,17 @@ const globalStyles = StyleSheet.create({
         fontSize: 50,
         fontWeight: 'bold',
     },
+    checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 20,
+        marginRight: '50%',
+    },
+    checkboxLabel: {
+        marginLeft: 8,
+        fontSize: 16,
+        color: 'white',
+    },
 });
 
 export default globalStyles;
